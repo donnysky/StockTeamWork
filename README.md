@@ -25,6 +25,20 @@ pip install streamlit-aggrid --user
 获取数据失败: cannot import name 'AggFuncType' from 'pandas._typing' (c:\programdata\anaconda3\lib\site-packages\pandas_typing.py)
 ```
 
+git操作
+
+```
+git clone https://github.com/donnysky/StockTeamWork.git
+git checkout main
+git pull
+git status
+git add xxx.py
+git commit -m '增加了下载基础数据工具类'
+git push -u origin main
+```
+
+
+
 ## 二、资源
 
 ```python
@@ -72,4 +86,8 @@ min：最小值，表示数据的下限。
 max：最大值，表示数据的上限。
 这些统计量能快速了解数据的分布、中心位置和离散情况。
 ```
+
+backtrader
+
+![image-20251207215502098](C:\Users\done5\AppData\Roaming\Typora\typora-user-images\image-20251207215502098.png) 
 

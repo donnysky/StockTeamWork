@@ -8,8 +8,6 @@ import configparser
 import plotly.express as px
 import matplotlib.pyplot as plt
 
-from st_aggrid import AgGrid
-from streamlit_searchbox import st_searchbox
 
 # 强制设置Streamlit版本兼容（需确保安装1.23.1）
 st.set_page_config(
@@ -264,7 +262,7 @@ def stock_k_priview(stockcode:str,stockname:str,data):
                                                                     'psTTM': 'psTTM-滚动市销率',
                                                                     'pcfNcfTTM': 'pcfNcfTTM-滚动市现率',
                                                                     'pbMRQ': 'pbMRQ-市净率'})
-        # AgGrid(data)
+       
 
         # 价格走势图表
         st.subheader("📈 价格走势")
