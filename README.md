@@ -39,7 +39,7 @@ https://docs.streamlit.io/develop/api-reference/data/st.dataframe
 ## 三、主程序
 StockWorks.ipynb
 
-streamlit程序运行：在主目录运行，streamlit run stock_quant_research.py
+streamlit程序运行：在主目录运行，streamlit run backtesting.py
 
 ## 四、程序工具类
 StockBackProgram.py
