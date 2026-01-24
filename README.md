@@ -3,29 +3,50 @@ A Very Simple Python Program for Analysing China's Stock. Stock Data Analyse and
 
 ## 一、环境安装
 
-**代码环境**
+## **代码环境**
 
-```
+```python
 windows 11
+# 版本对应关系 https://blog.csdn.net/fxqrd19287/article/details/150493372
+# 清华大学镜像网站下载最新版Anaconda：https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=M&O=D
 Anaconda3-2020.02-Windows-x86_64.exe
+# 直接升级
+conda install python=3.8
+# 新安装的，直接安装这个 Anaconda3-2021.05对应python 3.8
 ```
 
-**依赖安装**
+## **依赖安装**
 
 ```python
 运行cmd时，在图标上右键，以管理员运行，执行下面的安装
-pip install streamlit==1.23.1 backtrader==1.9.78.123 plotly pandas numpy
+pip install streamlit==1.23.1 --user backtrader==1.9.78.123 plotly pandas numpy
 pip install backtrader
 pip install backtrader[plotting] -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install matplotlib
+pip install matplotlib --upgrade --user
 pip install baostock -i https://pypi.org/simple
 pip install streamlit-searchbox --user
+pip install streamlit-echarts
+pip install numpy==1.20.3
+# module 'pandas' has no attribute 'Float64Index'
+pip install pandas==1.5.3 --user
+pip install numexpr==2.7.3 --user
+# 版本兼容问题，pyfolio跑不起来
+pip install pyfolio --user
+pip install pyfolio-reloaded==0.9.3 --user
+# 改用这个
+pip install quantstats --upgrade --no-cache-dir
+pip install quantstats==0.0.62
+# conda里安装
+pip install TA_Lib-0.4.28-cp38-cp38-win_amd64.whl
+# 还要安装yfinance
+
 # 这个不行得换一个
 pip install streamlit-aggrid --user
 获取数据失败: cannot import name 'AggFuncType' from 'pandas._typing' (c:\programdata\anaconda3\lib\site-packages\pandas_typing.py)
 ```
 
-git操作
+## git操作
 
 ```
 git clone https://github.com/donnysky/StockTeamWork.git
@@ -50,10 +71,17 @@ https://docs.streamlit.io/develop/api-reference/data/st.dataframe
 
 
 
-## 三、主程序
+## 三、主程序和运行
 StockWorks.ipynb
 
-streamlit程序运行：在主目录运行，streamlit run backtesting.py
+```python
+streamlit程序运行：在主目录运行，
+# streamlit run backtesting.py
+# D:\django\StockTeamWork
+# D:\django>jupyter notebook
+```
+
+
 
 ## 四、程序工具类
 StockBackProgram.py

@@ -1,9 +1,0 @@
-import streamlit as st
-
-def choice_stock():
-    st.write("Welcome to Page 1!")
-    stock_year = st.text_input("股票年份")
-    if stock_year:
-        st.write("股票年份: "+stock_year)
-
-choice_stock()
