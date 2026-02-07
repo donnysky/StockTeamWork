@@ -27,6 +27,7 @@ def download_trade_date(trade_file_name: str, start_date_in: str, end_date_in: s
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
     result = pd.DataFrame(data_list, columns=rs.fields)
+    result = result.dropna(axis=0)
     result['month'] = result['calendar_date'].str[:7]
     #### 结果集输出到csv文件 ####
     result.to_csv(trade_file_name, encoding="utf-8", index=False)
@@ -67,7 +68,7 @@ def download_all_stocks_by_day(trade_date_file: str, trade_date: str, all_stock_
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
     result = pd.DataFrame(data_list, columns=rs.fields)
-
+    result.dropna(axis=0)
     #### 结果集输出到csv文件 ####
     result.to_csv("./data/" + all_stock_file, encoding="utf-8", index=False)
     print(result)
@@ -99,6 +100,7 @@ def download_stocks_shz50(stock_file: str, query_date: str):
         # 获取一条记录，将记录合并在一起
         sz50_stocks.append(rs.get_row_data())
     result = pd.DataFrame(sz50_stocks, columns=rs.fields)
+    result.dropna(axis=0)
     # 结果集输出到csv文件
     result.to_csv("./data/" + stock_file, encoding="utf-8", index=False)
     print(result)
@@ -131,6 +133,7 @@ def download_stocks_hs300(stock_file: str, query_date: str):
         # 获取一条记录，将记录合并在一起
         hs300_stocks.append(rs.get_row_data())
     result = pd.DataFrame(hs300_stocks, columns=rs.fields)
+    result.dropna(axis=0)
     # 结果集输出到csv文件
     result.to_csv("./data/" + stock_file, encoding="utf-8", index=False)
     print(result)
@@ -165,6 +168,7 @@ def download_stock_industry(stock_file: str, query_date: str):
         # 获取一条记录，将记录合并在一起
         industry_list.append(rs.get_row_data())
     result = pd.DataFrame(industry_list, columns=rs.fields)
+    result.dropna(axis=0)
     # 结果集输出到csv文件
     result.to_csv("./data/" + stock_file, encoding="utf-8", index=False)
     print(result)
@@ -212,6 +216,7 @@ def download_stock_basic(stock_file: str, stock_code: str):
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
     result = pd.DataFrame(data_list, columns=rs.fields)
+    result.dropna(axis=0)
     # 结果集输出到csv文件
     result.to_csv("./data/" + stock_file, encoding="utf-8", index=False)
     print(result)
@@ -275,6 +280,7 @@ def download_index_k_data(stock_file: str, stock_code: str, start_date: str, end
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
     result = pd.DataFrame(data_list, columns=rs.fields)
+    result.dropna(axis=0)
     # 结果集输出到csv文件
     result.to_csv("./data/" + stock_file, encoding="utf-8", index=False)
     print(result)
@@ -339,7 +345,7 @@ def download_stock_kday_data(stock_file: str, stock_code: str, start_date: str, 
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
     result = pd.DataFrame(data_list, columns=rs.fields)
-
+    result.dropna(axis=0)
     #### 结果集输出到csv文件 ####
     result.to_csv("./data/day_" + stock_file, encoding="utf-8", index=False)
     print(result)
@@ -404,7 +410,7 @@ def download_stock_kmin_data(stock_file: str, stock_code: str, start_date: str, 
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
     result = pd.DataFrame(data_list, columns=rs.fields)
-
+    result.dropna(axis=0)
     #### 结果集输出到csv文件 ####
     result.to_csv("./data/minutes_" + stock_file, encoding="utf-8", index=False)
     print(result)

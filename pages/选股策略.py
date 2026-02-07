@@ -3,6 +3,7 @@ import sys
 
 import pandas as pd
 import numpy as np
+import configparser
 
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -208,8 +209,42 @@ def base_data_app():
     )
 
 
+def choose_stock():
+    st.subheader("⚡ 查看选股策略")
+    stratege_select = st.selectbox(
+        "策略选择",
+        ["请选择选股策略", "基本面选股"]
+    )
+    st.write("你选择的是："+stratege_select)
+    config_section = "BASE"
+    if (stratege_select == "请选择选股策略"):
+        st.warning('请选择选股策略。', icon="⚠️")
+        return
+    if(stratege_select == "基本面选股"):
+        config_section = "BASE"
+    config = configparser.ConfigParser()
+    config.read("./config/choice_stock.ini", encoding='utf-8')
+    # st.write(config.sections())
+    base = config[config_section]
+
+    # base["begin_date"]
+    opt_industry = base.get("opt_industry")
+    if len(opt_industry) == 0:
+        st.warning("⚠️ 请先在「获取基础数据」页面加载股票数据")
+    else:
+        # stbg = st.button("🔍 开始选股", type="primary")
+        # 选股条件
+        # st.markdown("### 选股条件")
+        min_price = 10.0
+        st.subheader("📜 查看选股策略")
+        for section in config.sections():
+            st.write(section)
+            for key, value in config.items(section):
+                st.write(f"{key} = {value}")
+
 
 if __name__ == '__main__':
-    init_session_state()
-    base_data_app()
-    list_files(f'{data_root_path}/data')
+    # init_session_state()
+    # base_data_app()
+    # list_files(f'{data_root_path}/data')
+    choose_stock()

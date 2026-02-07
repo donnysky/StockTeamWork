@@ -9,9 +9,9 @@ A Very Simple Python Program for Analysing China's Stock. Stock Data Analyse and
 windows 11
 # 版本对应关系 https://blog.csdn.net/fxqrd19287/article/details/150493372
 # 清华大学镜像网站下载最新版Anaconda：https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=M&O=D
-Anaconda3-2020.02-Windows-x86_64.exe
+Anaconda3-2021.05-Windows-x86_64.exe
 # 直接升级
-conda install python=3.8
+# conda install python=3.8
 # 新安装的，直接安装这个 Anaconda3-2021.05对应python 3.8
 ```
 
@@ -19,18 +19,19 @@ conda install python=3.8
 
 ```python
 运行cmd时，在图标上右键，以管理员运行，执行下面的安装
-pip install streamlit==1.23.1 --user backtrader==1.9.78.123 plotly pandas numpy
+pip install streamlit==1.23.1 --user
+# backtrader==1.9.78.123 plotly pandas numpy
 pip install backtrader
 pip install backtrader[plotting] -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install matplotlib
 pip install matplotlib --upgrade --user
 pip install baostock -i https://pypi.org/simple
 pip install streamlit-searchbox --user
-pip install streamlit-echarts
+pip install streamlit-echarts  --user
 pip install numpy==1.20.3
 # module 'pandas' has no attribute 'Float64Index'
 pip install pandas==1.5.3 --user
-pip install numexpr==2.7.3 --user
+pip install numexpr==2.8.6 --user
 # 版本兼容问题，pyfolio跑不起来
 pip install pyfolio --user
 pip install pyfolio-reloaded==0.9.3 --user
@@ -43,6 +44,16 @@ pip install TA_Lib-0.4.28-cp38-cp38-win_amd64.whl
 
 # 这个不行得换一个
 pip install streamlit-aggrid --user
+
+pip install wordcloud
+pip install jieba
+pip install seaborn
+pip install statsmodels
+
+pip install --user --upgrade aws-sam-cli
+pip install markupsafe==2.0.1
+# pip install tensorflow==2.10.0 --user
+
 获取数据失败: cannot import name 'AggFuncType' from 'pandas._typing' (c:\programdata\anaconda3\lib\site-packages\pandas_typing.py)
 ```
 

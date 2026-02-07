@@ -46,26 +46,27 @@ def list_files(root_dir):
     # st.write("names:", names)
     files = pd.DataFrame(names, columns=['file_name'])
     # st.dataframe(files)
-    st.write("显示股票交易县日历文件")
+    st.write("显示股票交易日历文件")
     tddf = files[files['file_name'].str.contains('trade_date')]
-    st.dataframe(tddf, use_container_width=True)
+    # st.dataframe(tddf, use_container_width=True)
 
-    tddf_selt = tddf.copy() #tddf[['file_name']]
+    tddf_selt = tddf.copy()
+    #tddf[['file_name']]
     tddf_selt["link"] = "http://localhost:8501/data/"+tddf_selt['file_name']
     tddf_selt["selected"] = False
     # ["selected"] = False
-    st.write(tddf_selt)
+    # st.write(tddf_selt)
     edited_tddf = st.data_editor(tddf_selt, use_container_width=True)
     # favorite_command = edited_df.loc[edited_df["rating"].idxmax()]["command"]  .loc[0]
     # favorite_command = edited_df.query("is_widget == True")["command"].loc[0]  ["file_name"]
     etdf = edited_tddf.query("selected == True").copy()
-    print("edited_tddf-------", type(etdf))
+    # print("edited_tddf-------", type(etdf))
     if not etdf.empty:
         for index, row in etdf.iterrows():
             fnm_tddf = row["file_name"]
             # st.dataframe(fnm_tddf)
-            print(index, " fnm_tddf::::", fnm_tddf)
-            st.session_state.fnm_tddf = fnm_tddf
+            st.write(" 显示文件【"+fnm_tddf+"】内容")
+            # st.session_state.fnm_tddf = fnm_tddf
             ftddf = pd.read_csv(f"{data_root_path}/data/{fnm_tddf}", encoding="utf-8")
             st.dataframe(ftddf, use_container_width=True)
 
@@ -113,7 +114,8 @@ def init_session_state():
 
 def display_file_data():
     if st.session_state.fnm_tddf is None:
-        st.write("st.session_state.fnm_tddf is None")
+        st.write("")
+        # st.write("st.session_state.fnm_tddf is None")
     else:
         df = pd.read_csv(f"{data_root_path}/data/{st.session_state.fnm_tddf}", encoding="utf-8")
         st.dataframe(df)
@@ -127,7 +129,7 @@ def base_data_app():
 
     year = st.sidebar.selectbox(
         "股票数据年份",
-        [2024, 2025, 2023, 2022, 2021]
+        [2024]
     )
     # st.sidebar.write("You selected:", options)
     if st.sidebar.button("查看数据"):
@@ -140,6 +142,7 @@ def base_data_app():
         sbpm.download_trade_date(trade_yeadr, f'{year}-01-01', f'{year}-12-31')
         st.write(f"下载{year}年股票交易日历完成。")
         dfty = pd.read_csv(trade_yeadr, encoding="utf-8")
+        st.dataframe(dfty)
 
     display_file_data()
 
@@ -147,26 +150,26 @@ def base_data_app():
         np.random.randn(20, 3),
         columns=['a', 'b', 'c'])
 
-    st.line_chart(chart_data, use_container_width=True)
-    st.markdown("---")
+    # st.line_chart(chart_data, use_container_width=True)
+    # st.markdown("---")
     chart_data = pd.DataFrame(
         np.random.randn(20, 3),
         columns=['a', 'b', 'c'])
 
-    st.area_chart(chart_data)
+    # st.area_chart(chart_data)
 
-    st.markdown("---")
+    # st.markdown("---")
     chart_data = pd.DataFrame(
         np.random.randn(20, 3),
         columns=["a", "b", "c"])
 
-    st.bar_chart(chart_data)
-    st.markdown("---")
+    # st.bar_chart(chart_data)
+    # st.markdown("---")
     arr = np.random.normal(1, 1, size=100)
     fig, ax = plt.subplots()
     ax.hist(arr, bins=20)
 
-    st.pyplot(fig)
+    # st.pyplot(fig)
 
     st.markdown("---")
 
@@ -177,12 +180,12 @@ def base_data_app():
             {"command": "st.time_input", "rating": 3, "is_widget": True},
         ]
     )
-    edited_df = st.data_editor(df, num_rows="dynamic")
+    # edited_df = st.data_editor(df, num_rows="dynamic")
 
     # favorite_command = edited_df.loc[edited_df["rating"].idxmax()]["command"]
-    favorite_command = edited_df.query("is_widget == True")["command"].loc[0]
-    # st.dataframe(favorite_command)
-    st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
+    # favorite_command = edited_df.query("is_widget == True")["command"].loc[0]
+    # #st.dataframe(favorite_command)
+    # st.markdown(f"Your favorite command is **{favorite_command}** 🎈")
 
     # 创建示例数据
     data = pd.DataFrame({
@@ -192,10 +195,10 @@ def base_data_app():
     })
 
     # 显示数据表
-    st.dataframe(data)
+    # st.dataframe(data)
 
     # 或使用表格格式显示
-    st.table(data)
+    # st.table(data)
 
     # 高亮显示特定行 Pandas requires version '3.0.0' or newer of 'jinja2' (version '2.11.1' currently installed).
     # st.dataframe(data.style.highlight_max(axis=0))

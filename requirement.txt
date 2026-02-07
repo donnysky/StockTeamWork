@@ -1,0 +1,20 @@
+pip install streamlit==1.23.1 --user
+pip install backtrader
+pip install backtrader[plotting] -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install matplotlib
+pip install matplotlib --upgrade --user
+pip install baostock -i https://pypi.org/simple
+pip install streamlit-searchbox --user
+pip install streamlit-echarts  --user
+pip install numpy==1.20.3
+pip install pandas==1.5.3 --user
+pip install numexpr==2.8.6 --user
+pip install quantstats --upgrade --no-cache-dir
+pip install quantstats==0.0.62
+pip install TA_Lib-0.4.28-cp38-cp38-win_amd64.whl
+pip install streamlit-aggrid --user
+pip install wordcloud
+pip install jieba
+pip install seaborn
+pip install --user --upgrade aws-sam-cli
+pip install markupsafe==2.0.1
