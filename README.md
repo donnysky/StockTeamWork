@@ -130,3 +130,10 @@ backtrader
 
 ![image-20251207215502098](C:\Users\done5\AppData\Roaming\Typora\typora-user-images\image-20251207215502098.png) 
 
+
+## 八、股票模型训练和预测
+```
+cd predict
+stock_train.ipynb:用于训练股票模型
+stock_predict.ipynb：用于预测股票未来6天的收盘价
+```
