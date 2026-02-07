@@ -23,6 +23,7 @@ class SmaDoubleStrategy(bt.Strategy):
         self.sma_longs = {d._name: bt.indicators.SMA(d.close, period=trade_base["ma_10"]) for d in self.datas}
         # 金叉/死叉信号
         # self.crossover = bt.indicators.CrossOver(self.sma_short, self.sma_long)
+        self.crossovers = {d._name: bt.indicators.CrossOver((bt.indicators.SMA(d.close, period=trade_base["ma_5"])), (bt.indicators.SMA(d.close, period=trade_base["ma_10"]))) for d in self.datas}
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:
@@ -62,10 +63,11 @@ class SmaDoubleStrategy(bt.Strategy):
             position = self.getposition(dat)
             sma_short = self.sma_shorts[dat._name]
             sma_long = self.sma_longs[dat._name]
-            crossover = bt.indicators.CrossOver(sma_short, sma_long)
-            if not position and crossover > 0:
-                self.order = self.buy(data=dat)
-                self.log(f'买入信号, 价格: {dat.close[0]:.2f}')
+            crossover = self.crossovers[dat._name]
+            if not position:
+                if crossover > 0:
+                    self.order = self.buy(data=dat)
+                    self.log(f'买入信号, 价格: {dat.close[0]:.2f}')
             # 如果持有仓位且出现死叉 or self.dataclose < self.sma
             else:
                 if crossover < 0 or (dat.close[0] < dat.close[-1] < dat.close[-2]):
@@ -73,7 +75,7 @@ class SmaDoubleStrategy(bt.Strategy):
                     self.log(f'卖出信号, 价格: {dat.close[0]:.2f}')
 
     def stop(self):
-        self.log('(双线策略：) 期末总资金 %.2f' % (self.broker.getvalue()), doprint=True)
+        self.log('(双线策略：) 期末总资金 %.2f' % (self.broker.getvalue()))
         # self.log(f'stop...')
         # if self.position:
         #     self.sell(percents=100)
